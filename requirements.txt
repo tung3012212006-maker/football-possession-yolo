@@ -1,0 +1,6 @@
+roboflow
+python-dotenv
+ultralytics
+opencv-python
+numpy
+supervision
