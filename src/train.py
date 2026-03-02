@@ -1,22 +1,33 @@
 from ultralytics import YOLO
 
+
 def train_football_model():
-    # 1. Khởi tạo model YOLOv11 
-    model = YOLO("yolo11m.pt") 
-    # 2. Tiến hành Fine-tuning
+    """
+    Fine-tune a pretrained YOLOv11 model on the custom football dataset.
+    """
+
+    # 1. Initialize the pretrained YOLOv11 model (medium version)
+    model = YOLO("yolo11m.pt")
+
+    # 2. Start fine-tuning on the custom dataset
     results = model.train(
-        data=".../football-possession-yolo/data/track-football-player--4/data.yaml", # Đường dẫn file yaml
-        epochs=100,                              # Số lượt train
-        imgsz=640,                               # Kích thước ảnh
-        batch=16,                                # Tùy vào bộ nhớ GPU (8, 16, 32)
-        device=0,                                # 0 cho GPU, 'cpu' nếu không có GPU
-        project="models",                        # Thư mục lưu kết quả
-        name="yolo11_fine_tuned",                # Tên phiên bản train
-        patience=20,                             # Early stopping nếu không cải thiện
-        save=True                                # Lưu lại trọng số (.pt) tốt nhất
+        data=".../football-possession-yolo/data/track-football-player--4/data.yaml",  # Path to dataset config
+        epochs=100,                 # Number of training epochs
+        imgsz=640,                  # Input image size
+        batch=16,                   # Batch size (adjust based on GPU memory)
+        device=0,                   # Use GPU (0) or 'cpu' if no GPU is available
+        project="models",           # Directory to save training outputs
+        name="yolo11_fine_tuned",   # Name of this training run
+        patience=20,                # Early stopping if no improvement
+        save=True                   # Save best model weights
     )
-    
-    print("Training Complete! > The optimized model weights have been saved to: models/yolo11_fine_tuned/weights/best.pt")
+
+    print(
+        "Training Complete! "
+        "Optimized model weights saved at: "
+        "models/yolo11_fine_tuned/weights/best.pt"
+    )
+
 
 if __name__ == "__main__":
     train_football_model()
