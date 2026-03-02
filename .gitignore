@@ -205,3 +205,38 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# =========================
+# Project Specific (YOLO / CV)
+# =========================
+
+# Dataset
+data/
+!data/.gitkeep
+
+# Model weights
+models/
+*.pt
+
+# Videos & media
+*.mp4
+*.avi
+*.mov
+
+# Images (optional - nếu không muốn push ảnh test)
+# *.jpg
+# *.png
+
+# MacOS
+.DS_Store
+
+# Environment variables
+.env
+
+# Logs
+*.log
+runs/
+
+# Ultralytics output
+runs/
+wandb/
